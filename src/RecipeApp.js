@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import Recipe from './Recipe';
 import RecipeList from './RecipeList';
 import './RecipeApp.css';
 
 class RecipeApp extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      recipes: [
+        {
+          id: 0,
+          title: "Spaghetti",
+          instructions: "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
+          ingredients: ["pasta", "8 cups water", "1 box spaghetti"],
+          img: "pasta.jpg"
+        },
+        {
+          id: 1,
+          title: "Milkshake",
+          instructions: "Combine ice cream and milk.  Blend until creamy",
+          ingredients: ["2 Scoops Ice cream", "8 ounces milk"],
+          img: "milkshake.jpg"
+        },
+        {
+          id: 2,
+          title: "Avocado Toast",
+          instructions: "Toast bread.  Slice avocado and spread on bread.  Add salt, oil, and pepper to taste.",
+          ingredients: ["2 slices of bread", "1 avocado", "1 tablespoon olive oil", "1 pinch of salt", "pepper"],
+          img: "avocado_toast.jpg"
+        }
+      ],
+      nextRecipeId: 3
+    }
+  }
   render() {
     return (
       <div className="RecipeApp">
         <Navbar />
-        {/* <Recipe 
-          title="Pasta"
-          ingredients={["pasta", "bolognese", "basil"]}
-          img="pasta.jpg"
-          instructions="Follow These Steps. Boil water in a large pot. To make sure pasta doesn't stick together, use at least 4 quarts of water for every pound of noodles. Salt the water with at least a tablespoon—more is fine. The salty water adds flavor to the pasta. Add pasta. Stir the pasta. Test the pasta by tasting it. Drain the pasta."
-        /> */}
-        <RecipeList />
+        <RecipeList recipes={this.state.recipes} />
       </div>
     );
   }
